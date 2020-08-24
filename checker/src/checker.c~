@@ -6,7 +6,7 @@
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 14:37:50 by thalme            #+#    #+#             */
-/*   Updated: 2020/08/24 14:38:24 by thalme           ###   ########.fr       */
+/*   Updated: 2020/08/12 14:37:50 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_print_data(t_list *elem)
 {
-	printf("value:'%5d'\n", *((int*)elem->content));
+	printf("value:'%5d'\n", *((int*)elem->content);
 }
 
 void	ft_handle_error(t_data *data)
