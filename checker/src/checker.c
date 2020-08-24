@@ -14,7 +14,7 @@
 
 void		ft_print_data(t_list *elem)
 {
-	printf("value:'%5d'\n", *((int*)elem->content));
+	printf("value:'%5d'\n", *((int*)elem->content);
 }
 
 void	ft_handle_error(t_data *data)

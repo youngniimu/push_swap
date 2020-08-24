@@ -16,14 +16,16 @@
 int		execute_rb(t_data *data)
 {
 	t_list *temp;
-
-	if (ft_lstlen(data->stack_b) > 1)
+	
+	if (ft_lstlen(data->stack_b) == 2)
+		execute_sb(data);
+	else if (ft_lstlen(data->stack_b) > 2)
 	{
 		temp = data->stack_b;
 		data->stack_b = temp->next;
 		data->stack_b_tail->next = temp;
-		temp->next = NULL;
 		data->stack_b_tail = temp;
+		data->stack_b_tail->next = NULL;
 	}
 	return(0);
 }

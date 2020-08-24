@@ -17,13 +17,15 @@ int		execute_ra(t_data *data)
 {
 	t_list *temp;
 
-	if (ft_lstlen(data->stack_a) > 1)
+	if (ft_lstlen(data->stack_a) == 2)	
+		execute_sa(data);
+	else if (ft_lstlen(data->stack_a) > 2)
 	{
 		temp = data->stack_a;
 		data->stack_a = temp->next;
 		data->stack_a_tail->next = temp;
-		temp->next = NULL;
 		data->stack_a_tail = temp;
+		data->stack_a_tail->next = NULL;
 	}
 	return(0);
 }

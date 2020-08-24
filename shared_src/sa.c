@@ -20,6 +20,7 @@ int		execute_sa(t_data *data)
 	// 	printf("swap a\n");
 	// 	ft_lstswap(data->stack_a, data->stack_a->next);
 	// }
-	ft_lstswap(data->stack_a, data->stack_a->next);
+	if (ft_lstlen(data->stack_a) > 1)
+		ft_lstswap(data->stack_a, data->stack_a->next);
 	return (0);
 }

@@ -16,11 +16,11 @@
 // # include "../checker/include/checker.h"
 // # include "../push_swap/include/push_swap.h"
 
-typedef struct		s_content
+typedef struct		s_elem
 {
 	int				value;
-	int				median; //is the number belove or above median
-}
+	int				index;
+}					t_elem;
 
 typedef struct		s_data
 {

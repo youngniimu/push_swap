@@ -25,6 +25,7 @@ int		execute_sb(t_data *data)
 	// {
 	// 	printf("tried to swap b but no values\n");
 	// }
-	ft_lstswap(data->stack_b, data->stack_b->next);
+	if (ft_lstlen(data->stack_b) > 1)
+		ft_lstswap(data->stack_b, data->stack_b->next);
 	return (0);
 }
