@@ -17,6 +17,7 @@
 # include "../../libprintf/include/ft_printf.h"
 # include "../../shared_src/shared_src.h"
 
-
+void		ft_sort_stack(t_data *data);
+// void		del(void *content, size_t content_size);
 
 #endif
