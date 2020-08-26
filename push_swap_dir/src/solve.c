@@ -228,9 +228,9 @@ void		ft_sort_stack(t_data *data)
 		// ft_lstiter(data->stack_b, &ft_print_data);
 	ft_rotate_final_a(data);
 	
-		// printf("=======END END=========\n\n");
-		// printf("=======STACK A=========\n");
-		// ft_lstiter(data->stack_a, &ft_print_data);
-		// printf("=======STACK B=========\n");
-		// ft_lstiter(data->stack_b, &ft_print_data);
+		printf("=======END END=========\n\n");
+		printf("=======STACK A=========\n");
+		ft_lstiter(data->stack_a, &ft_print_data);
+		printf("=======STACK B=========\n");
+		ft_lstiter(data->stack_b, &ft_print_data);
 }

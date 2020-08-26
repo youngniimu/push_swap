@@ -37,7 +37,7 @@ typedef struct		s_move
 
 typedef struct		s_elem
 {
-	long			value;
+	int			value;
 	int				index;
 }					t_elem;
 
