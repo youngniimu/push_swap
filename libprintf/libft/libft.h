@@ -37,7 +37,7 @@ int					ft_isalpha(int i);
 int					ft_isalnum(int i);
 int					ft_isascii(int i);
 int					ft_isprint(int i);
-int					ft_atoi(const char *str);
+long				ft_atoi(const char *str);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_toupper(int c);
 int					ft_tolower(int c);

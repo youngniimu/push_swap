@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.h                                         :+:      :+:    :+:   */
+/*   shared_src.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,15 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _COMMANDS_
-# define _COMMANDS_
+#ifndef _SHARED_SRC_
+# define _SHARED_SRC_
 
 // # include "../checker/include/checker.h"
 // # include "../push_swap/include/push_swap.h"
 
+# include "../libprintf/include/ft_printf.h"
+
+# define CHECKER 0
+# define PUSH_SWAP 1
+# define TOP 1
+# define BOTTOM -1
+# define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
+# define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
+
+
+
+typedef struct		s_move
+{
+	int				a_stack_dir;
+	int				a_stack_amount;
+	int				b_stack_dir;
+	int				b_stack_amount;
+}					t_move;
+
 typedef struct		s_elem
 {
-	int				value;
+	long			value;
 	int				index;
 }					t_elem;
 
@@ -33,6 +52,17 @@ typedef struct		s_data
 	int				err;
 	int				read;
 	int				in_order;
+	int				min;
+	int				max;
+	int				median;
+	int				first_quarter;
+	int				third_quarter;
+	int				len;
+	int				next_top;
+	int				next_bottom;
+	int				program;
+	int				double_move;
+	t_move			*cheapest_move;
 }					t_data;
 
 // sa : swap a - swap the first 2 elements at the top of stack a. Do nothing if there
@@ -67,5 +97,9 @@ int		execute_rrb(t_data *data);
 int		execute_rrr(t_data *data);
 
 void	ft_read_input(char *av, t_data *data);
+void	ft_handle_error(t_data *data);
+void	ft_print_data(t_list *elem);
+void 	del(void *content, size_t content_size);
+t_data 	*ft_init_data(int program);
 
 #endif

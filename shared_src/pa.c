@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_pa(t_data *data)
@@ -27,5 +26,7 @@ int		execute_pa(t_data *data)
 		data->stack_b = temp;
 		data->stack_a_tail = data->stack_a_tail ? data->stack_a_tail : node; 
 	}
+	if (data->program == PUSH_SWAP && !data->double_move)
+		printf("pa\n");
 	return(0);
 }

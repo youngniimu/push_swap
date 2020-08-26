@@ -10,12 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_rr(t_data *data)
 {
+	data->double_move = 1;
 	execute_ra(data);
 	execute_rb(data);
+	if (data->program == PUSH_SWAP)
+		printf("rr\n");
+	data->double_move = 0;
 	return (0);
 }

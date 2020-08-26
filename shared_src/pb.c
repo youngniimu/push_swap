@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_pb(t_data *data)
@@ -27,5 +26,7 @@ int		execute_pb(t_data *data)
 		data->stack_a = temp;
 		data->stack_b_tail = data->stack_b_tail ? data->stack_b_tail : node;   
 	}
+	if (data->program == PUSH_SWAP && !data->double_move)
+		printf("pb\n");
 	return(0);
 }

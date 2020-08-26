@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/12 13:55:36 by thalme            #+#    #+#             */
-/*   Updated: 2020/08/12 13:55:36 by thalme           ###   ########.fr       */
+/*   Created: 2020/08/25 14:25:30 by thalme            #+#    #+#             */
+/*   Updated: 2020/08/25 14:25:31 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PUSH_SWAP_
-# define _PUSH_SWAP_
+#include "shared_src.h"
 
-# include <stdlib.h>
-# include "../../libprintf/include/ft_printf.h"
-# include "../../shared_src/shared_src.h"
-
-void		ft_sort_stack(t_data *data);
-// void		del(void *content, size_t content_size);
-
-#endif
+void	ft_handle_error(t_data *data)
+{
+	if (data->err)
+	{
+		printf("Error\n");
+		exit(1);
+	}
+}

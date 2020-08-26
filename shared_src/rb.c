@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_rb(t_data *data)
@@ -18,7 +17,11 @@ int		execute_rb(t_data *data)
 	t_list *temp;
 	
 	if (ft_lstlen(data->stack_b) == 2)
+	{
+		data->double_move = 1;
 		execute_sb(data);
+		data->double_move = 0;
+	}
 	else if (ft_lstlen(data->stack_b) > 2)
 	{
 		temp = data->stack_b;
@@ -27,5 +30,7 @@ int		execute_rb(t_data *data)
 		data->stack_b_tail = temp;
 		data->stack_b_tail->next = NULL;
 	}
+	if (data->program == PUSH_SWAP && !data->double_move)
+		printf("rb\n");
 	return(0);
 }

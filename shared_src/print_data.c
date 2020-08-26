@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sb.c                                               :+:      :+:    :+:   */
+/*   print_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/13 16:57:52 by thalme            #+#    #+#             */
-/*   Updated: 2020/08/13 16:57:53 by thalme           ###   ########.fr       */
+/*   Created: 2020/08/25 14:33:27 by thalme            #+#    #+#             */
+/*   Updated: 2020/08/25 14:33:27 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shared_src.h"
 
-int		execute_sb(t_data *data)
+void		ft_print_data(t_list *elem)
 {
-	if (ft_lstlen(data->stack_b) > 1)
-		ft_lstswap(data->stack_b, data->stack_b->next);
-	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("sb\n");
-	return (0);
+	printf("%10ld%10d\n", ((t_elem*)elem->content)->value, ((t_elem*)elem->content)->index);
 }

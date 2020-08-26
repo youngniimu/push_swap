@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sb.c                                               :+:      :+:    :+:   */
+/*   delete_list_unit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/13 16:57:52 by thalme            #+#    #+#             */
-/*   Updated: 2020/08/13 16:57:53 by thalme           ###   ########.fr       */
+/*   Created: 2020/08/25 15:05:54 by thalme            #+#    #+#             */
+/*   Updated: 2020/08/25 15:05:54 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shared_src.h"
+# include "shared_src.h"
 
-int		execute_sb(t_data *data)
+void del(void *content, size_t content_size)
 {
-	if (ft_lstlen(data->stack_b) > 1)
-		ft_lstswap(data->stack_b, data->stack_b->next);
-	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("sb\n");
-	return (0);
+	free((t_elem*)content);
+	content_size = 0;
+	// printf("content %s\n", (char*)content);
+	// printf("content_size %zu\n", content_size);
 }

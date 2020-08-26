@@ -10,12 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_ss(t_data *data)
 {
+	data->double_move = 1;
 	execute_sa(data);
 	execute_sb(data);
+	if (data->program == PUSH_SWAP)
+		printf("ss\n");
+	data->double_move = 0;
 	return (0);
 }

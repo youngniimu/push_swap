@@ -11,7 +11,23 @@
 #******************************************************************************#
 
 NAME = shared_src.a
-SRCS = sa.c sb.c ss.c pa.c pb.c ra.c rb.c rr.c rra.c rrb.c rrr.c read_input.c
+SRCS = 	sa.c\
+		sb.c\
+		ss.c\
+		pa.c\
+		pb.c\
+		ra.c\
+		rb.c\
+		rr.c\
+		rra.c\
+		rrb.c\
+		rrr.c\
+		read_input.c\
+		handle_error.c\
+		print_data.c\
+		delete_list_unit.c\
+		init_data.c
+
 OBJECTS = $(SRCS:.c=.o)
 FLAGS = -Werror -Wall -Wextra
 

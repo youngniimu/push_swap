@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_rra(t_data *data)
@@ -20,7 +19,13 @@ int		execute_rra(t_data *data)
 	int 	len;
 
 	len = ft_lstlen(data->stack_a);
-	if (len > 1)
+	if (len == 2)	
+	{
+		data->double_move = 1;
+		execute_sa(data);
+		data->double_move = 0;
+	}
+	else if (len > 2)
 	{
 		temp = data->stack_a;
 		data->stack_a = data->stack_a_tail;
@@ -35,5 +40,7 @@ int		execute_rra(t_data *data)
 		data->stack_a_tail = list;
 		data->stack_a_tail->next = NULL;
 	}
+	if (data->program == PUSH_SWAP && !data->double_move)
+		printf("rra\n");
 	return (0);
 }

@@ -14,9 +14,6 @@
 
 static int ft_check_stack_order(t_list **elem)
 {
-	//printf("%d %d\n", *((int*)(*elem)->content), *((int*)(*elem)->next->content));
-	// printf("b value %d\n", *((int*)(*elem)->next->content));
-
 	if ((*elem)->next != NULL && *((int*)(*elem)->content) < *((int*)(*elem)->next->content))
 	{
 		if((*elem)->next != NULL)
@@ -43,13 +40,3 @@ void		ft_check_result(t_data *data)
 	data->in_order ? printf("OK\n") : printf("KO\n");
 	exit(0);
 }
-
-// static int	ft_check_stacks(t_list **a, t_list **b)
-// {
-// 	printf("a value %d\n", *((int*)(*a)->content));
-// 	printf("b value %d\n", *((int*)(*a)->next->content));
-// 	if(*b)
-// 		return(3);
-// 	ft_check_order(*a)
-// 	return(0);
-// }

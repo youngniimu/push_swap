@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 int		execute_rrb(t_data *data)
@@ -20,7 +19,13 @@ int		execute_rrb(t_data *data)
 	int 	len;
 
 	len = ft_lstlen(data->stack_b);
-	if (len > 1)
+	if (len == 2)
+	{
+		data->double_move = 1;
+		execute_sb(data);
+		data->double_move = 0;
+	}
+	else if (len > 2)
 	{
 		temp = data->stack_b;
 		data->stack_b = data->stack_b_tail;
@@ -35,5 +40,7 @@ int		execute_rrb(t_data *data)
 		data->stack_b_tail = list;
 		data->stack_b_tail->next = NULL;
 	}
+	if (data->program == PUSH_SWAP && !data->double_move)
+		printf("rrb\n");
 	return (0);
 }

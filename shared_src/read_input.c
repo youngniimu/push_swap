@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/include/checker.h"
 #include "shared_src.h"
 
 static int			ft_check_duplicates(t_list *head)
@@ -31,13 +30,21 @@ static int			ft_check_duplicates(t_list *head)
             temp1=temp1->next;
         }
         if(count > 1)
-        {
-            printf("DUPLICATE FOUND: %d\n",*((int*)temp->content));
 			return (5);
-        }
         temp = temp->next;
     }
 	return (0);
+}
+
+static int ft_check_max_int(t_list *elem)
+{
+	while (elem)
+	{
+		if (((t_elem*)elem->content)->value > MAX_INT)
+			return (6);
+		elem = elem->next;
+	}
+	return(0);
 }
 
 static int			ft_validate_input(char *str)
@@ -54,6 +61,16 @@ static int			ft_validate_input(char *str)
 	return(0);
 }
 
+t_elem				*make_elem(long content)
+{
+	t_elem *elem;
+
+	elem = (t_elem*)malloc(sizeof(t_elem));
+	elem->value = content;
+	elem->index = 0;
+	return (elem);
+}
+
 void				ft_read_input(char *av, t_data *data)
 {
 	char		**split;
@@ -62,52 +79,31 @@ void				ft_read_input(char *av, t_data *data)
 
 	i = 0;
 	data->err = ft_validate_input(av);
+	ft_handle_error(data);
 	split = ft_strsplit(av, ' ');
-	list = ft_lstnew(&(int){ ft_atoi(split[i]) }, sizeof(int*));
-	// list = ft_lstnew(split[i], sizeof(char*));
+	list = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
 	data->stack_a = list;
 	i++;
 	while(split[i] != NULL)
 	{
-		list->next = ft_lstnew(&(int){ ft_atoi(split[i]) }, sizeof(int*));
-		// list->next = ft_lstnew(split[i], sizeof(char*));
+		list->next = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
 		if (split[i + 1] == NULL)
 			data->stack_a_tail = list->next;
 		list = list->next;
 		i++;
 	}
 	data->err = ft_check_duplicates(data->stack_a);
+	ft_handle_error(data);
+	data->err = ft_check_max_int(data->stack_a);
+	ft_handle_error(data);
 	i = 0;
 	while(split[i] != NULL)
 		free(split[i++]);
 	free(split);
-	ft_handle_error(data);
 	data->read = 1;
+	data->len = i - 1;
+	data->max = i;
+	data->median = i / 2;
+	// data->first_quarter = i / 4;
+	// data->third_quarter = data->first_quarter + data->median;
 }
-
-
-
-// int				ft_read_input(char *av, t_data *data)
-// {
-// 	char		**split;
-// 	int 		*pnb;
-// 	t_list		*list;
-
-// 	split = ft_strsplit(av, ' ');
-// 	data->err = ft_validateinput(split);
-// 	pnb = (int*)malloc(sizeof(int));
-// 	*pnb = ft_atoi(*split);
-// 	list = ft_lstnew(pnb, sizeof(int*));
-// 	data->stack_a = list;
-// 	split++;
-// 	while(*split != NULL)
-// 	{
-// 		pnb = (int*)malloc(sizeof(int));
-// 		*pnb = ft_atoi(*split);
-// 		list->next = ft_lstnew(pnb, sizeof(int*));
-// 		list = list->next;
-// 		split++;
-// 	}
-// 	ft_lstiter(data->stack_a, &ft_print_data);
-// 	return(0);
-// }
