@@ -47,15 +47,21 @@ static int ft_check_max_int(t_list *elem)
 	return(0);
 }
 
-static int			ft_validate_input(char *str)
+static int			ft_validate_input(char **tab)
 {
 	int i;
+	int j;
 
 	i = 0;
-	while(str[i])
-	{
-		if (!(ft_isdigit(str[i])) && str[i] != ' ')
-			return(1);
+	while(tab[i])
+	{	
+		j = 0;
+		while(tab[i][j])
+		{
+			if (!(ft_isdigit(tab[i][j])) && tab[i][j] != ' ')
+				return(1);
+			j++;
+		}
 		i++;
 	}
 	return(0);
@@ -71,16 +77,18 @@ t_elem				*make_elem(long content)
 	return (elem);
 }
 
-void				ft_read_input(char *av, t_data *data)
+void				ft_read_input(int ac, char **av, t_data *data)
 {
 	char		**split;
 	t_list		*list;
 	int i;
-
+	if (ac == 2)
+		split = ft_strsplit(av[1], ' ');
+	else
+		split = &av[1];
 	i = 0;
-	data->err = ft_validate_input(av);
+	data->err = ft_validate_input(split);
 	ft_handle_error(data);
-	split = ft_strsplit(av, ' ');
 	list = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
 	data->stack_a = list;
 	i++;
@@ -98,8 +106,13 @@ void				ft_read_input(char *av, t_data *data)
 	ft_handle_error(data);
 	i = 0;
 	while(split[i] != NULL)
-		free(split[i++]);
-	free(split);
+	{
+		if (ac == 2)
+			free(split[i]);
+		i++;
+	}
+	if (ac == 2)		
+		free(split);
 	data->read = 1;
 	data->len = i - 1;
 	data->max = i;

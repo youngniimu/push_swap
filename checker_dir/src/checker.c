@@ -17,13 +17,9 @@ int		main(int ac, char **av)
 	t_data	*data;
 
 	data = ft_init_data(CHECKER);
-	while (ac > 1)
-	{
-		if (!data->read)
-			ft_read_input(av[1], data);
-		else
-			ft_read_command(data);
-	}
+	ft_read_input(ac, av, data);
+	while(1)
+		ft_read_command(data);
 	ft_lstiter(data->stack_a, &ft_print_data);
 	ft_lstdel(&data->stack_a, &del);	//leaks
 	free(data);							//leaks

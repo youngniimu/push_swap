@@ -96,7 +96,7 @@ int		execute_rrb(t_data *data);
 // rrr : 	rra and rrb at the same time.
 int		execute_rrr(t_data *data);
 
-void	ft_read_input(char *av, t_data *data);
+void	ft_read_input(int ac, char **av, t_data *data);
 void	ft_handle_error(t_data *data);
 void	ft_print_data(t_list *elem);
 void 	del(void *content, size_t content_size);
