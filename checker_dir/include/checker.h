@@ -13,6 +13,8 @@
 #ifndef _CHECKER_
 # define _CHECKER_
 
+# include "mlx.h"
+
 # include <stdlib.h>
 # include "../../libprintf/include/ft_printf.h"
 # include "../../shared_src/shared_src.h"

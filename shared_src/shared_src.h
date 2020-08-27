@@ -22,10 +22,17 @@
 # define PUSH_SWAP 1
 # define TOP 1
 # define BOTTOM -1
+# define VISUALIZER 1
 # define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
 
 
+
+typedef struct		s_mlx
+{
+	void				*mlx;
+	void				*win;
+}					t_mlx;
 
 typedef struct		s_move
 {
@@ -62,6 +69,8 @@ typedef struct		s_data
 	int				next_bottom;
 	int				program;
 	int				double_move;
+	int				flag;
+	t_mlx			*visualizer;
 }					t_data;
 
 // sa : swap a - swap the first 2 elements at the top of stack a. Do nothing if there

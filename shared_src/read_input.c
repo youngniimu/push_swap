@@ -82,12 +82,20 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	char		**split;
 	t_list		*list;
 	int i;
-	if (ac == 2)
-		split = ft_strsplit(av[1], ' ');
+	i = 1;
+	if (ft_strequ(av[i], "-v"))
+	{
+		printf("flag on\n");
+		data->flag = VISUALIZER;
+		i++;
+	}
+	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
+		split = ft_strsplit(av[i], ' ');
 	else
-		split = &av[1];
+		split = &av[i];
+	printf("%d\n", i);
 	i = 0;
-	data->err = ft_validate_input(split);
+	data->err = ft_validate_input(&split[i]);
 	ft_handle_error(data);
 	list = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
 	data->stack_a = list;

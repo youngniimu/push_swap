@@ -22,12 +22,15 @@ LIB_OBJ = ../libprintf/libftprintf.a
 SHARED_SRC = ../shared_src
 SHARED_SRC_OBJ = ../shared_src/shared_src.a
 
+
+
 all: $(NAME)
 
 $(NAME):
 		make -C $(LIB)
 		make -C $(SHARED_SRC)
-		gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB_OBJ) $(SHARED_SRC_OBJ)
+		gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB_OBJ) $(SHARED_SRC_OBJ) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+
 clean:
 		make -C	$(LIB) clean
 		make -C $(SHARED_SRC) clean

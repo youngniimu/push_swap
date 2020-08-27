@@ -35,5 +35,6 @@ t_data *ft_init_data(int program)
 	data->len = 0;
 	data->double_move = 0;
 	data->program = program;
+	data->visualizer = NULL;
 	return(data);
 }
