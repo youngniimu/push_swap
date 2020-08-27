@@ -121,18 +121,19 @@ void	ft_execute_cheapest_move(t_data *data, int value, int index)
 	int move_down;
 	t_list *head;
 	int previous_value;
+	t_move cheapest;
 
 	head = data->stack_a;
 	move_down = ft_lstlen(data->stack_b) - index;
 	if (index < move_down)
 	{
-		data->cheapest_move->b_stack_dir = TOP;
-		data->cheapest_move->b_stack_amount = index;
+		cheapest.b_dir = TOP;
+		cheapest.b_amount = index;
 	}
 	else
 	{
-		data->cheapest_move->b_stack_dir = BOTTOM;
-		data->cheapest_move->b_stack_amount = move_down;
+		cheapest.b_dir = BOTTOM;
+		cheapest.b_amount = move_down;
 	}
 	// FIND RIGHT A_STACK INDEX, INITIALIZE PREVIOUS_VALUE AS A_STACK_TAIL->INDEX
 	previous_value = ((t_elem*)data->stack_a_tail->content)->index;
@@ -148,24 +149,24 @@ void	ft_execute_cheapest_move(t_data *data, int value, int index)
 	move_down = ft_lstlen(data->stack_a) - index;
 	if (index < move_down)
 	{
-		data->cheapest_move->a_stack_dir = TOP;
-		data->cheapest_move->a_stack_amount = index;
+		cheapest.a_dir = TOP;
+		cheapest.a_amount = index;
 	}
 	else
 	{
-		data->cheapest_move->a_stack_dir = BOTTOM;
-		data->cheapest_move->a_stack_amount = move_down;
+		cheapest.a_dir = BOTTOM;
+		cheapest.a_amount = move_down;
 	}
-	while(data->cheapest_move->a_stack_dir == data->cheapest_move->b_stack_dir && data->cheapest_move->a_stack_amount > 0 && data->cheapest_move->b_stack_amount > 0)
+	while(cheapest.a_dir == cheapest.b_dir && cheapest.a_amount > 0 && cheapest.b_amount > 0)
 	{
-		data->cheapest_move->a_stack_dir == TOP ? execute_rr(data) : execute_rrr(data);
-		data->cheapest_move->a_stack_amount--;
-		data->cheapest_move->b_stack_amount--;
+		cheapest.a_dir == TOP ? execute_rr(data) : execute_rrr(data);
+		cheapest.a_amount--;
+		cheapest.b_amount--;
 	}
-	while(--data->cheapest_move->a_stack_amount >= 0)
-		data->cheapest_move->a_stack_dir == TOP ? execute_ra(data) : execute_rra(data);
-	while(--data->cheapest_move->b_stack_amount >= 0)
-		data->cheapest_move->b_stack_dir == TOP ? execute_rb(data) : execute_rrb(data);
+	while(--cheapest.a_amount >= 0)
+		cheapest.a_dir == TOP ? execute_ra(data) : execute_rra(data);
+	while(--cheapest.b_amount >= 0)
+		cheapest.b_dir == TOP ? execute_rb(data) : execute_rrb(data);
 	execute_pa(data);
 }
 
@@ -228,9 +229,9 @@ void		ft_sort_stack(t_data *data)
 		// ft_lstiter(data->stack_b, &ft_print_data);
 	ft_rotate_final_a(data);
 	
-		printf("=======END END=========\n\n");
-		printf("=======STACK A=========\n");
-		ft_lstiter(data->stack_a, &ft_print_data);
-		printf("=======STACK B=========\n");
-		ft_lstiter(data->stack_b, &ft_print_data);
+		// printf("=======END END=========\n\n");
+		// printf("=======STACK A=========\n");
+		// ft_lstiter(data->stack_a, &ft_print_data);
+		// printf("=======STACK B=========\n");
+		// ft_lstiter(data->stack_b, &ft_print_data);
 }

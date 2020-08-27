@@ -35,6 +35,5 @@ t_data *ft_init_data(int program)
 	data->len = 0;
 	data->double_move = 0;
 	data->program = program;
-	data->cheapest_move = program == PUSH_SWAP ? (t_move*)malloc(sizeof(t_move)) : NULL;
 	return(data);
 }
