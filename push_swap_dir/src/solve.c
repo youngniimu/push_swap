@@ -228,7 +228,6 @@ void		ft_sort_stack(t_data *data)
 	int cheapest_index;
 	int i;
 
-	// data->len < 250 ? ft_split_stack(data) : ft_split_stack_big(data);
 	ft_split_stack(data);
 	t_list *temp;
 	while (1)

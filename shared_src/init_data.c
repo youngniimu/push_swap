@@ -25,14 +25,10 @@ t_data *ft_init_data(int program)
 	data->stack_b_tail = NULL;
 	data->command = NULL;
 	data->err = 0;
-	data->read = 0;
 	data->in_order = 0;
-	data->min = 0;
-	data->max = 0;
 	data->median = 0;
-	data->first_quarter = 0;
-	data->third_quarter = 0;
 	data->len = 0;
+	data->flag = 0;
 	data->double_move = 0;
 	data->program = program;
 	data->command_index = 0;

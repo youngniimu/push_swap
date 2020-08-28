@@ -79,12 +79,12 @@ int			ft_keyboard_bindings(int button, t_data *data)
 			mlx_clear_window(MLX, WIN);
 			ft_next_move(data->commands[data->command_index], data);
 			data->command_index++;
-			mlx_string_put(MLX, WIN, 10, 100, 16372, ft_itoa(data->command_index));
+			mlx_string_put(MLX, WIN, 10, 100, 0xFFFFFF, ft_itoa(data->command_index));
 			ft_visualize_stacks(data);
 		}
 		else
 		{
-			mlx_string_put(MLX, WIN, 10, 130, 16372, "wait, its sorted");
+			mlx_string_put(MLX, WIN, 10, 130, 0xFFFFFF, "wait, its sorted");
 		}
 		
 	}

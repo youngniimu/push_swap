@@ -126,10 +126,9 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	}
 	if (ac == 2)		
 		free(split);
-	data->read = 1;
+
 	data->len = i - 1;
-	data->max = i;
+
 	data->median = i / 2;
-	data->first_quarter = i / 4;
-	data->third_quarter = data->first_quarter + data->median;
+
 }

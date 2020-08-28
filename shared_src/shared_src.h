@@ -49,7 +49,7 @@ typedef struct		s_move
 
 typedef struct		s_elem
 {
-	int			value;
+	int				value;
 	int				index;
 }					t_elem;
 
@@ -59,19 +59,11 @@ typedef struct		s_data
 	t_list			*stack_a_tail;
 	t_list			*stack_b;
 	t_list			*stack_b_tail;
-	
 	char			*command;
 	int				err;
-	int				read;
 	int				in_order;
-	int				min;
-	int				max;
 	int				median;
-	int				first_quarter;
-	int				third_quarter;
 	int				len;
-	int				next_top;
-	int				next_bottom;
 	int				program;
 	int				double_move;
 	int				flag;
@@ -114,6 +106,7 @@ int		execute_rrr(t_data *data);
 void	ft_read_input(int ac, char **av, t_data *data);
 void	ft_handle_error(t_data *data);
 void	ft_print_data(t_list *elem);
+void 	ft_check_order(t_data *data);
 void 	del(void *content, size_t content_size);
 t_data 	*ft_init_data(int program);
 

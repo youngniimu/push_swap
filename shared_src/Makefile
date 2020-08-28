@@ -26,7 +26,8 @@ SRCS = 	sa.c\
 		handle_error.c\
 		print_data.c\
 		delete_list_unit.c\
-		init_data.c
+		init_data.c\
+		check_order.c
 
 OBJECTS = $(SRCS:.c=.o)
 FLAGS = -Werror -Wall -Wextra
