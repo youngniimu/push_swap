@@ -23,7 +23,8 @@
 void		ft_handle_error(t_data *data);
 void 		ft_read_command(t_data *data);
 void		ft_check_result(t_data *data);
-void		ft_print_data(t_list *elem);
+void		ft_start_visualizer(t_data *data);
+void		ft_print_stacks(t_list *elem);
 // void		del(void *content, size_t content_size);
 
 #endif

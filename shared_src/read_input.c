@@ -30,7 +30,7 @@ static int			ft_check_duplicates(t_list *head)
             temp1=temp1->next;
         }
         if(count > 1)
-			return (5);
+			return (1);
         temp = temp->next;
     }
 	return (0);
@@ -59,7 +59,7 @@ static int			ft_validate_input(char **tab)
 		while(tab[i][j])
 		{
 			if (!(ft_isdigit(tab[i][j])) && tab[i][j] != ' ')
-				return(1);
+				return(2);
 			j++;
 		}
 		i++;
@@ -72,6 +72,8 @@ t_elem				*make_elem(long content)
 	t_elem *elem;
 
 	elem = (t_elem*)malloc(sizeof(t_elem));
+	if (elem == NULL)
+		return(NULL);						//MALLOC
 	elem->value = content;
 	elem->index = 0;
 	return (elem);
@@ -85,15 +87,18 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	i = 1;
 	if (ft_strequ(av[i], "-v"))
 	{
-		printf("flag on\n");
 		data->flag = VISUALIZER;
+		i++;
+	}
+	if (ft_strequ(av[i], "-e"))
+	{
+		data->flag = ERROR;
 		i++;
 	}
 	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
 		split = ft_strsplit(av[i], ' ');
 	else
 		split = &av[i];
-	printf("%d\n", i);
 	i = 0;
 	data->err = ft_validate_input(&split[i]);
 	ft_handle_error(data);

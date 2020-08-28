@@ -26,7 +26,7 @@ int main(int ac, char **av)
 	// 	ft_indexed_stack(data);
 	// 	ft_sort_stack(data);
 	// }
-	ft_lstdel(&data->stack_a, &del);	//leaks
-	free(data);							//leaks
+	// ft_lstdel(&data->stack_a, &del);	//leaks
+	// free(data);							//leaks
 	return(0);
 }

@@ -38,10 +38,6 @@ void 	ft_read_command(t_data *data)
 		handle_command(data);
 		ft_handle_error(data);
 		free(data->command);
-		printf("=======STACK A=========\n");
-		ft_lstiter(data->stack_a, &ft_print_data);
-		printf("=======STACK B=========\n");
-		ft_lstiter(data->stack_b, &ft_print_data);
 	}
 	else
 		ft_check_result(data);

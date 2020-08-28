@@ -14,7 +14,9 @@ NAME = checker
 FLAGS = -Wall -Wextra -Werror
 SRC_FILES = checker.c \
 			read_command.c \
-			check_result.c
+			check_result.c \
+			visualizer.c
+			
 SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 LIB = ../libprintf

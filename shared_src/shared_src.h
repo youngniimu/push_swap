@@ -23,8 +23,13 @@
 # define TOP 1
 # define BOTTOM -1
 # define VISUALIZER 1
+# define ERROR 2
+# define DUPLICATE 1
+# define ONLY_NUMBERS 2
 # define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
+# define MLX data->visualizer->mlx
+# define WIN data->visualizer->win
 
 
 
@@ -70,6 +75,8 @@ typedef struct		s_data
 	int				program;
 	int				double_move;
 	int				flag;
+	int				command_index;
+	char			**commands;
 	t_mlx			*visualizer;
 }					t_data;
 
