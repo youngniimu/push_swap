@@ -70,6 +70,8 @@ static void ft_next_move(char *command, t_data *data)
 
 int			ft_keyboard_bindings(int button, t_data *data)
 {
+	char *nb;
+
 	if (button == 53)
 		exit(1);
 	if (button == 124)
@@ -78,8 +80,11 @@ int			ft_keyboard_bindings(int button, t_data *data)
 		{
 			mlx_clear_window(MLX, WIN);
 			ft_next_move(data->commands[data->command_index], data);
+			free(data->commands[data->command_index]);
 			data->command_index++;
-			mlx_string_put(MLX, WIN, 10, 100, 0xFFFFFF, ft_itoa(data->command_index));
+			nb = ft_itoa(data->command_index);
+			mlx_string_put(MLX, WIN, 10, 100, 0xFFFFFF, nb);
+			free(nb);
 			ft_visualize_stacks(data);
 		}
 		else
@@ -97,7 +102,7 @@ void		ft_start_visualizer(t_data *data)
 	data->command_index = 0;
 	data->visualizer = (t_mlx*)malloc(sizeof(t_mlx));
 	MLX = mlx_init();
-    WIN = mlx_new_window(MLX, (data->len * 2) + 22, 360, "miniV");
+    WIN = mlx_new_window(MLX, (data->len * 2) + 22, 360, "pocketSorter");
 	ft_visualize_stacks(data);
 	// mlx_key_hook(WIN, &ft_keyboard_bindings, data);
 	mlx_hook(WIN, 2, 0, &ft_keyboard_bindings, data);

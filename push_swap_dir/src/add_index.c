@@ -20,12 +20,13 @@ int *ft_sort_list(t_data *data)
 	t_list *head;
 
 	head = data->stack_a;
-	sorted = (int*)malloc(sizeof(int) * data->len);
+	sorted = (int*)malloc(sizeof(int) * data->len + 1);
 	i = 0;
 	while(head)
 	{
-		sorted[i++] = ((t_elem*)head->content)->value;
+		sorted[i] = ((t_elem*)head->content)->value;
 		head = head->next;
+		i++;
 	}
 	i = 0;
 	while(i < data->len)
@@ -50,12 +51,10 @@ void ft_indexed_stack(t_data *data)
 
 	sorted_list = ft_sort_list(data);
 	head = data->stack_a;
-	i = 0;
 	while (head)
 	{
-		i = 0;
-		while (sorted_list[i] != ((t_elem*)head->content)->value)
-			i++;
+		i = -1;
+		while (sorted_list[++i] != ((t_elem*)head->content)->value);
 		((t_elem*)head->content)->index = i;
 		head = head->next;
 	}

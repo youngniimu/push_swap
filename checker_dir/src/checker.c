@@ -20,7 +20,7 @@ static void visualizer(t_data *data)
 		data->commands[data->command_index] = (char*)malloc(sizeof(char) * ft_strlen(data->command) + 1);
 		data->commands[data->command_index] = ft_strcpy(data->commands[data->command_index], data->command);
 		data->command_index++;
-		// free(data->command);
+		free(data->command);
 	}
 	data->commands[data->command_index] = NULL;
 	ft_start_visualizer(data);
@@ -30,6 +30,8 @@ int		main(int ac, char **av)
 {
 	t_data	*data;
 
+	if (ac == 1)
+		return(0);
 	data = ft_init_data(CHECKER);
 	ft_read_input(ac, av, data);
 	if (data->flag != VISUALIZER)

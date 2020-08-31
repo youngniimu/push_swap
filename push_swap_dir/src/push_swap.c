@@ -16,6 +16,8 @@ int main(int ac, char **av)
 {
 	t_data	*data;
 
+	if (ac == 1)
+		return(0);
 	data = ft_init_data(PUSH_SWAP);
 	ft_read_input(ac, av, data);
 	ft_indexed_stack(data);

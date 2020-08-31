@@ -14,7 +14,7 @@ NAME = push_swap
 FLAGS = -Wall -Wextra -Werror
 SRC_FILES = push_swap.c \
 			solve.c \
-			sort.c
+			add_index.c
 			
 SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
