@@ -17,13 +17,16 @@ int		execute_rrb(t_data *data)
 	t_list	*temp;
 	t_list	*list;
 	int 	len;
+	int 	print;
 
+	print = data->double_move;
 	len = ft_lstlen(data->stack_b);
 	if (len == 2)
 	{
 		data->double_move = 1;
 		execute_sb(data);
-		data->double_move = 0;
+		if (!print)
+			data->double_move = 0;
 	}
 	else if (len > 2)
 	{

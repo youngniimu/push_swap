@@ -51,14 +51,19 @@ static int			ft_validate_input(char **tab)
 {
 	int i;
 	int j;
+	int sign;
 
 	i = 0;
 	while(tab[i])
 	{	
 		j = 0;
+		sign = 0;
 		while(tab[i][j])
 		{
-			if (!(ft_isdigit(tab[i][j])) && tab[i][j] != ' ')
+			if (tab[i][j] == '-')
+				sign++;
+			if ((!(ft_isdigit(tab[i][j])) && tab[i][j] != ' ' && tab[i][j] != '-')
+				|| sign == 2)
 				return(2);
 			j++;
 		}
@@ -67,7 +72,7 @@ static int			ft_validate_input(char **tab)
 	return(0);
 }
 
-t_elem				*make_elem(long content)
+t_elem				*make_elem(int content)
 {
 	t_elem *elem;
 
@@ -79,22 +84,52 @@ t_elem				*make_elem(long content)
 	return (elem);
 }
 
+void			create_list(char **split, t_data *data)
+{
+
+	t_elem 		*temp;
+	int 		i;
+	t_list		*list;
+
+	i = 0;
+	temp = make_elem(ft_atoi(split[i]));
+	list = ft_lstnew(temp, sizeof(t_elem*));
+	free(temp);
+	data->stack_a = list;
+	i++;
+	while(split[i] != NULL)
+	{
+		temp = make_elem(ft_atoi(split[i]));
+		list->next = ft_lstnew(temp, sizeof(t_elem*));
+		free(temp);
+		if (split[i + 1] == NULL)
+			data->stack_a_tail = list->next;
+		list = list->next;
+		i++;
+	}
+}
+
+void				ft_check_flags(char *av, int *i, t_data *data)
+{
+	if (ft_strequ(av, "-v"))
+	{
+		data->flag = VISUALIZER;
+		*i += 1;
+	}
+	else if (ft_strequ(av, "-e"))
+	{
+		data->flag = ERROR;
+		*i += 1;
+	}
+}
+
 void				ft_read_input(int ac, char **av, t_data *data)
 {
 	char		**split;
-	t_list		*list;
-	int i;
+	int 		i;
+
 	i = 1;
-	if (ft_strequ(av[i], "-v"))
-	{
-		data->flag = VISUALIZER;
-		i++;
-	}
-	if (ft_strequ(av[i], "-e"))
-	{
-		data->flag = ERROR;
-		i++;
-	}
+	ft_check_flags(av[i], &i, data);
 	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
 		split = ft_strsplit(av[i], ' ');
 	else
@@ -102,17 +137,7 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	i = 0;
 	data->err = ft_validate_input(&split[i]);
 	ft_handle_error(data);
-	list = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
-	data->stack_a = list;
-	i++;
-	while(split[i] != NULL)
-	{
-		list->next = ft_lstnew(make_elem(ft_atoi(split[i])), sizeof(t_elem*));
-		if (split[i + 1] == NULL)
-			data->stack_a_tail = list->next;
-		list = list->next;
-		i++;
-	}
+	create_list(&split[i], data);
 	data->err = ft_check_duplicates(data->stack_a);
 	ft_handle_error(data);
 	data->err = ft_check_max_int(data->stack_a);
@@ -126,9 +151,6 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	}
 	if (ac == 2)		
 		free(split);
-
 	data->len = i - 1;
-
 	data->median = i / 2;
-
 }

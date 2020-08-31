@@ -28,6 +28,7 @@
 # define ONLY_NUMBERS 2
 # define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
+// # define THIRD_A_INDEX ((t_elem*)data->stack_a->next->next->content)->index
 # define MLX data->visualizer->mlx
 # define WIN data->visualizer->win
 
@@ -35,8 +36,8 @@
 
 typedef struct		s_mlx
 {
-	void				*mlx;
-	void				*win;
+	void			*mlx;
+	void			*win;
 }					t_mlx;
 
 typedef struct		s_move
