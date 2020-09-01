@@ -16,7 +16,7 @@ int		execute_ra(t_data *data)
 {
 	t_list *temp;
 
-	if (ft_lstlen(data->stack_a) == 2)	
+	if (ft_lstlen(data->stack_a) == 2)
 	{
 		data->double_move = 1;
 		execute_sa(data);
@@ -32,5 +32,5 @@ int		execute_ra(t_data *data)
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
 		printf("ra\n");
-	return(0);
+	return (0);
 }

@@ -17,16 +17,16 @@ int		execute_pa(t_data *data)
 	t_list *node;
 	t_list *temp;
 
-	if(data->stack_b != NULL)
+	if (data->stack_b != NULL)
 	{
 		node = ft_lstnew(data->stack_b->content, data->stack_b->content_size);
 		ft_lstadd(&data->stack_a, node);
 		temp = data->stack_b->next;
 		ft_lstdelone(&data->stack_b, &del);
 		data->stack_b = temp;
-		data->stack_a_tail = data->stack_a_tail ? data->stack_a_tail : node; 
+		data->stack_a_tail = data->stack_a_tail ? data->stack_a_tail : node;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
 		printf("pa\n");
-	return(0);
+	return (0);
 }

@@ -23,6 +23,7 @@ SRCS = 	sa.c\
 		rrb.c\
 		rrr.c\
 		read_input.c\
+		validate_input.c\
 		handle_error.c\
 		print_data.c\
 		delete_list_unit.c\

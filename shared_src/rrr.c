@@ -20,5 +20,5 @@ int		execute_rrr(t_data *data)
 	if (data->program == PUSH_SWAP)
 		printf("rrr\n");
 	data->double_move = 0;
-	return(0);
+	return (0);
 }

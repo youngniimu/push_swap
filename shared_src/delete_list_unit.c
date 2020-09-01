@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "shared_src.h"
+#include "shared_src.h"
 
-void del(void *content, size_t content_size)
+void	del(void *content, size_t content_size)
 {
 	free((t_elem*)content);
 	content_size = 0;

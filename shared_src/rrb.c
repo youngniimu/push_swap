@@ -12,28 +12,31 @@
 
 #include "shared_src.h"
 
-int		execute_rrb(t_data *data)
+static void		handle_special_case(t_data *data)
 {
-	t_list	*temp;
-	t_list	*list;
-	int 	len;
-	int 	print;
+	int			print;
 
 	print = data->double_move;
+	data->double_move = 1;
+	execute_sb(data);
+	if (!print)
+		data->double_move = 0;
+}
+
+int				execute_rrb(t_data *data)
+{
+	t_list		*temp;
+	t_list		*list;
+	int			len;
+
 	len = ft_lstlen(data->stack_b);
 	if (len == 2)
-	{
-		data->double_move = 1;
-		execute_sb(data);
-		if (!print)
-			data->double_move = 0;
-	}
+		handle_special_case(data);
 	else if (len > 2)
 	{
 		temp = data->stack_b;
 		data->stack_b = data->stack_b_tail;
 		data->stack_b->next = temp;
-
 		list = data->stack_b;
 		while (len > 1)
 		{

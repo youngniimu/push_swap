@@ -12,10 +12,10 @@
 
 #include "shared_src.h"
 
-int		execute_rb(t_data *data)
+int			execute_rb(t_data *data)
 {
-	t_list *temp;
-	
+	t_list	*temp;
+
 	if (ft_lstlen(data->stack_b) == 2)
 	{
 		data->double_move = 1;
@@ -32,5 +32,5 @@ int		execute_rb(t_data *data)
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
 		printf("rb\n");
-	return(0);
+	return (0);
 }

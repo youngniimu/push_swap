@@ -12,20 +12,19 @@
 
 #include "shared_src.h"
 
-static int ft_check_stack_order(t_list *elem)
+static int	ft_check_stack_order(t_list *elem)
 {
-	
 	while (elem->next)
 	{
-		if (((t_elem*)elem->content)->value > ((t_elem*)elem->next->content)->value)
-			return(0);
+		if (((t_elem*)elem->content)->value
+			> ((t_elem*)elem->next->content)->value)
+			return (0);
 		elem = elem->next;
 	}
-	return(1);
-
+	return (1);
 }
 
-void ft_check_order(t_data *data)
+void		ft_check_order(t_data *data)
 {
 	if (data->stack_b)
 		return ;

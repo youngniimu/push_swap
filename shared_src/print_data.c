@@ -14,5 +14,6 @@
 
 void		ft_print_data(t_list *elem)
 {
-	printf("%10ld%10d\n", ((t_elem*)elem->content)->value, ((t_elem*)elem->content)->index);
+	printf("%10ld%10d\n", ((t_elem*)elem->content)->value,
+	((t_elem*)elem->content)->index);
 }

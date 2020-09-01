@@ -12,13 +12,13 @@
 
 #include "shared_src.h"
 
-t_data *ft_init_data(int program)
+t_data		*ft_init_data(int program)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data*)malloc(sizeof(t_data));
 	if (!data)
-		return(NULL);
+		return (NULL);
 	data->stack_a = NULL;
 	data->stack_b = NULL;
 	data->stack_a_tail = NULL;
@@ -34,5 +34,5 @@ t_data *ft_init_data(int program)
 	data->command_index = 0;
 	data->commands = NULL;
 	data->visualizer = NULL;
-	return(data);
+	return (data);
 }

@@ -12,86 +12,23 @@
 
 #include "shared_src.h"
 
-static int			ft_check_duplicates(t_list *head)
-{
-	int count;
-    t_list *temp;
-    t_list *temp1;
-
-    temp = head;
-    while(temp != NULL)
-    {
-        temp1 = head;
-        count = 0;
-        while(temp1 != NULL)
-        {
-			if (*((int*)temp->content) == *((int*)temp1->content))
-                count++;
-            temp1=temp1->next;
-        }
-        if(count > 1)
-			return (DUPLICATE);
-        temp = temp->next;
-    }
-	return (0);
-}
-
-static int ft_check_max_int(t_list *elem)
-{
-	while (elem)
-	{
-		if (((t_elem*)elem->content)->value > MAX_INT)
-			return (INTEGER);
-		if (((t_elem*)elem->content)->value < MIN_INT)
-			return (INTEGER);
-		elem = elem->next;
-	}
-	return(0);
-}
-
-static int			ft_validate_input(char **tab)
-{
-	int i;
-	int j;
-	int sign;
-
-	i = 0;
-	while(tab[i])
-	{	
-		j = 0;
-		sign = 0;
-		while(tab[i][j])
-		{
-			if (tab[i][j] == '-')
-				sign++;
-			if ((!(ft_isdigit(tab[i][j])) && tab[i][j] != ' ' && tab[i][j] != '-')
-				|| sign == 2)
-				return(2);
-			j++;
-		}
-		i++;
-	}
-	return(0);
-}
-
 t_elem				*make_elem(long content)
 {
 	t_elem *elem;
 
 	elem = (t_elem*)malloc(sizeof(t_elem));
 	if (elem == NULL)
-		return(NULL);						//MALLOC
+		return (NULL);
 	elem->value = content;
 	elem->index = 0;
 	return (elem);
 }
 
-void			create_list(char **split, t_data *data)
+void				create_list(char **split, t_data *data)
 {
-
-	t_elem 		*temp;
-	int 		i;
-	t_list		*list;
+	t_elem			*temp;
+	int				i;
+	t_list			*list;
 
 	if (!split[0])
 	{
@@ -104,7 +41,7 @@ void			create_list(char **split, t_data *data)
 	free(temp);
 	data->stack_a = list;
 	i++;
-	while(split[i] != NULL)
+	while (split[i] != NULL)
 	{
 		temp = make_elem(ft_atolong(split[i]));
 		list->next = ft_lstnew(temp, sizeof(t_elem));
@@ -132,14 +69,25 @@ void				ft_check_flags(char *av, int *i, t_data *data)
 		exit(0);
 }
 
+static void			ft_free_split(char **split, int ac, int *i)
+{
+	while (split[*i] != NULL)
+	{
+		if (ac == 2)
+			free(split[*i]);
+		*i += 1;
+	}
+	if (ac == 2)
+		free(split);
+}
+
 void				ft_read_input(int ac, char **av, t_data *data)
 {
 	char		**split;
-	int 		i;
+	int			i;
 
 	i = 1;
 	ft_check_flags(av[i], &i, data);
-	// ft_handle_error(data);
 	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
 		split = ft_strsplit(av[i], ' ');
 	else
@@ -153,14 +101,7 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	data->err = ft_check_max_int(data->stack_a);
 	ft_handle_error(data);
 	i = 0;
-	while(split[i] != NULL)
-	{
-		if (ac == 2)
-			free(split[i]);
-		i++;
-	}
-	if (ac == 2)		
-		free(split);
+	ft_free_split(split, ac, &i);
 	data->len = i - 1;
 	data->median = i / 2;
 }
