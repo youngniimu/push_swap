@@ -12,13 +12,13 @@
 
 #include "../include/checker.h"
 
-static void visualizer(t_data *data)
+static void		visualizer(t_data *data)
 {
 	data->commands = (char**)malloc(sizeof(char*) * 1000);
-	while(get_next_line(0, &data->command))
+	while (get_next_line(0, &data->command))
 	{
-		data->commands[data->command_index] = (char*)malloc(sizeof(char) * ft_strlen(data->command) + 1);
-		data->commands[data->command_index] = ft_strcpy(data->commands[data->command_index], data->command);
+		CURR_COMMAND = (char*)malloc(ft_strlen(data->command) + 1);
+		CURR_COMMAND = ft_strcpy(CURR_COMMAND, data->command);
 		data->command_index++;
 		free(data->command);
 	}
@@ -26,21 +26,21 @@ static void visualizer(t_data *data)
 	ft_start_visualizer(data);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	t_data	*data;
+	t_data		*data;
 
 	if (ac == 1)
-		return(0);
+		return (0);
 	data = ft_init_data(CHECKER);
 	ft_read_input(ac, av, data);
 	if (data->flag != VISUALIZER)
-		while(1)
+		while (1)
 			ft_read_command(data);
 	else
 		visualizer(data);
 	ft_lstiter(data->stack_a, &ft_print_data);
-	ft_lstdel(&data->stack_a, &del);	//leaks
-	free(data);							//leaks
-	return(0);
+	ft_lstdel(&data->stack_a, &del);
+	free(data);
+	return (0);
 }

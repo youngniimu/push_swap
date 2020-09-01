@@ -33,8 +33,8 @@
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
 # define CURRENT_B_INDEX ((t_elem*)data->stack_b->content)->index
 # define NEXT_B_INDEX ((t_elem*)data->stack_b->next->content)->index
-# define MLX data->visualizer->mlx
-# define WIN data->visualizer->win
+
+# define CURR_COMMAND data->commands[data->command_index]
 
 # define A_ST ((t_elem*)data->stack_a->content)->index
 # define A_ND ((t_elem*)data->stack_a->next->content)->index
@@ -43,6 +43,9 @@
 # define B_ST ((t_elem*)data->stack_b->content)->index
 # define B_ND ((t_elem*)data->stack_b->next->content)->index
 # define B_RD ((t_elem*)data->stack_b->next->next->content)->index
+
+# define MLX data->visualizer->mlx
+# define WIN data->visualizer->win
 
 typedef struct		s_mlx
 {

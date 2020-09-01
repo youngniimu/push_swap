@@ -12,12 +12,12 @@
 
 #include "../include/checker.h"
 
-static void handle_command(t_data *data)
+static void		handle_command(t_data *data)
 {
-	int err;
+	int			err;
 
 	err = 2;
-	err *= !ft_strequ("sa", data->command) ? 1 : execute_sa(data); 
+	err *= !ft_strequ("sa", data->command) ? 1 : execute_sa(data);
 	err *= !ft_strequ("sb", data->command) ? 1 : execute_sb(data);
 	err *= !ft_strequ("ss", data->command) ? 1 : execute_ss(data);
 	err *= !ft_strequ("pa", data->command) ? 1 : execute_pa(data);
@@ -31,14 +31,18 @@ static void handle_command(t_data *data)
 	data->err = err;
 }
 
-void 	ft_read_command(t_data *data)
+void			ft_read_command(t_data *data)
 {
-	if(get_next_line(0, &data->command))
+	if (get_next_line(0, &data->command))
 	{
 		handle_command(data);
 		ft_handle_error(data);
 		free(data->command);
 	}
 	else
-		ft_check_result(data);
+	{
+		ft_check_order(data);
+		data->in_order ? printf("OK\n") : printf("KO\n");
+		exit(0);
+	}
 }
