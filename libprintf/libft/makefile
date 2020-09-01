@@ -88,7 +88,8 @@ SRCS = 	ft_memset.c \
 		ft_ftoa.c \
 		ft_str_toupper.c \
 		ft_lstswap.c \
-		ft_lstlen.c
+		ft_lstlen.c \
+		ft_atolong.c
 
 OBJECTS = $(SRCS:.c=.o)
 FLAGS = -Werror -Wall -Wextra

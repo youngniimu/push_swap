@@ -13,24 +13,27 @@
 #ifndef _SHARED_SRC_
 # define _SHARED_SRC_
 
-// # include "../checker/include/checker.h"
-// # include "../push_swap/include/push_swap.h"
-
 # include "../libprintf/include/ft_printf.h"
 
 # define CHECKER 0
 # define PUSH_SWAP 1
+
 # define TOP 1
 # define BOTTOM -1
+
 # define VISUALIZER 1
 # define ERROR 2
+
 # define DUPLICATE 1
 # define ONLY_NUMBERS 2
+# define INTEGER 3
+# define NOINPUT 4
+
+
 # define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index
 # define CURRENT_B_INDEX ((t_elem*)data->stack_b->content)->index
 # define NEXT_B_INDEX ((t_elem*)data->stack_b->next->content)->index
-// # define THIRD_A_INDEX ((t_elem*)data->stack_a->next->next->content)->index
 # define MLX data->visualizer->mlx
 # define WIN data->visualizer->win
 
@@ -59,7 +62,7 @@ typedef struct		s_move
 
 typedef struct		s_elem
 {
-	int				value;
+	long			value;
 	int				index;
 }					t_elem;
 

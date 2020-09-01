@@ -30,7 +30,7 @@ static int			ft_check_duplicates(t_list *head)
             temp1=temp1->next;
         }
         if(count > 1)
-			return (1);
+			return (DUPLICATE);
         temp = temp->next;
     }
 	return (0);
@@ -41,7 +41,7 @@ static int ft_check_max_int(t_list *elem)
 	while (elem)
 	{
 		if (((t_elem*)elem->content)->value > MAX_INT)
-			return (6);
+			return (INTEGER);
 		elem = elem->next;
 	}
 	return(0);
@@ -72,7 +72,7 @@ static int			ft_validate_input(char **tab)
 	return(0);
 }
 
-t_elem				*make_elem(int content)
+t_elem				*make_elem(long content)
 {
 	t_elem *elem;
 
@@ -91,16 +91,21 @@ void			create_list(char **split, t_data *data)
 	int 		i;
 	t_list		*list;
 
+	if (!split[0])
+	{
+		data->err = 5;
+		ft_handle_error(data);
+	}
 	i = 0;
-	temp = make_elem(ft_atoi(split[i]));
-	list = ft_lstnew(temp, sizeof(t_elem*));
+	temp = make_elem(ft_atolong(split[i]));
+	list = ft_lstnew(temp, sizeof(t_elem));
 	free(temp);
 	data->stack_a = list;
 	i++;
 	while(split[i] != NULL)
 	{
-		temp = make_elem(ft_atoi(split[i]));
-		list->next = ft_lstnew(temp, sizeof(t_elem*));
+		temp = make_elem(ft_atolong(split[i]));
+		list->next = ft_lstnew(temp, sizeof(t_elem));
 		free(temp);
 		if (split[i + 1] == NULL)
 			data->stack_a_tail = list->next;
@@ -121,6 +126,8 @@ void				ft_check_flags(char *av, int *i, t_data *data)
 		data->flag = ERROR;
 		*i += 1;
 	}
+	if (av[0] == '\0')
+		data->err = NOINPUT;
 }
 
 void				ft_read_input(int ac, char **av, t_data *data)
@@ -130,6 +137,7 @@ void				ft_read_input(int ac, char **av, t_data *data)
 
 	i = 1;
 	ft_check_flags(av[i], &i, data);
+	ft_handle_error(data);
 	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
 		split = ft_strsplit(av[i], ' ');
 	else
