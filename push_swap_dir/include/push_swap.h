@@ -22,5 +22,7 @@ void		ft_indexed_stack(t_data *data);
 void		ft_rotate_final_a(t_data *data);
 void		ft_sort_five(t_data *data);
 void		ft_sort_short(t_data *data);
+void		ft_execute_cheapest_move(t_data *data, int value, int index);
+int			ft_count_moves(t_data *data, int value, int index);
 
 #endif

@@ -16,6 +16,4 @@ void	del(void *content, size_t content_size)
 {
 	free((t_elem*)content);
 	content_size = 0;
-	// printf("content %s\n", (char*)content);
-	// printf("content_size %zu\n", content_size);
 }

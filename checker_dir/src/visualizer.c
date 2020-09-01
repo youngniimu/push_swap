@@ -20,7 +20,7 @@ static void			ft_print_stack(t_list *curr, t_data *data, int *x)
 	while (curr)
 	{
 		i = 0;
-		y = 340;
+		y = 140;
 		while (i < ((t_elem*)curr->content)->value)
 		{
 			mlx_pixel_put(MLX, WIN, *x, y--, 0xFFFFFF);
@@ -40,10 +40,10 @@ void				ft_visualize_stacks(t_data *data)
 	a = data->stack_a;
 	b = data->stack_b;
 	x = 10;
-	mlx_string_put(MLX, WIN, x, 340, 0xFFFFFF, "A");
+	mlx_string_put(MLX, WIN, x, 140, 0xFFFFFF, "A");
 	ft_print_stack(data->stack_a, data, &x);
 	x += 2;
-	mlx_string_put(MLX, WIN, x, 340, 0xFFFFFF, "B");
+	mlx_string_put(MLX, WIN, x, 140, 0xFFFFFF, "B");
 	ft_print_stack(data->stack_b, data, &x);
 }
 
@@ -77,12 +77,12 @@ int					ft_keyboard_bindings(int button, t_data *data)
 			free(data->commands[data->command_index]);
 			data->command_index++;
 			nb = ft_itoa(data->command_index);
-			mlx_string_put(MLX, WIN, 10, 100, 0xFFFFFF, nb);
+			mlx_string_put(MLX, WIN, 10, 10, 0xFFFFFF, nb);
 			free(nb);
 			ft_visualize_stacks(data);
 		}
 		else
-			mlx_string_put(MLX, WIN, 10, 130, 0xFFFFFF, "OK");
+			mlx_string_put(MLX, WIN, 10, 40, 0xFFFFFF, "OK");
 	}
 	return (0);
 }
@@ -92,7 +92,7 @@ void				ft_start_visualizer(t_data *data)
 	data->command_index = 0;
 	data->visualizer = (t_mlx*)malloc(sizeof(t_mlx));
 	MLX = mlx_init();
-	WIN = mlx_new_window(MLX, (data->len * 2) + 22, 360, "pocketSorter");
+	WIN = mlx_new_window(MLX, (data->len * 2) + 30, 160, "pocketSorter");
 	ft_visualize_stacks(data);
 	mlx_hook(WIN, 2, 0, &ft_keyboard_bindings, data);
 	mlx_hook(WIN, 3, 0, &ft_keyboard_bindings, data);

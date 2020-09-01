@@ -12,17 +12,17 @@
 
 #include "../include/push_swap.h"
 
-void ft_rotate_final_a(t_data *data)
+void		ft_rotate_final_a(t_data *data)
 {
-	t_list *head;
-	int index;
+	t_list	*head;
+	int		index;
 
 	head = data->stack_a;
 	index = 0;
 	while (head)
 	{
 		if ((((t_elem*)head->content)->index) == 0)
-			break;
+			break ;
 		head = head->next;
 		index++;
 	}
@@ -43,67 +43,31 @@ void		ft_split_stack(t_data *data)
 
 	i = -1;
 	while (++i <= data->len)
-		(CURRENT_A_INDEX <= data->median && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
+		(CURRENT_A_INDEX <= data->median && CURRENT_A_INDEX != 0)
+		? execute_pb(data) : execute_ra(data);
 	i = -1;
 	while (ft_lstlen(data->stack_a) != 2)
-		(CURRENT_A_INDEX > data->median && CURRENT_A_INDEX != data->len && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
+		(CURRENT_A_INDEX > data->median && CURRENT_A_INDEX != data->len &&
+		CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
 	if (CURRENT_A_INDEX < NEXT_A_INDEX)
 		execute_sa(data);
 }
 
-/*
-** COUNT MOVES FOR EVERY INDEX IN STACK B
-*/
-int			ft_count_moves(t_data *data, int value, int index)
+int			ft_find_cheapest_index(t_data *data)
 {
-	int moves;
-	int move_down;
-	t_list *head;
-	int previous_a_value;
-	int dir;
-
-	move_down = ft_lstlen(data->stack_b) - index;
-	moves = (index < move_down) ? index : move_down;
-	dir = (index < move_down) ? TOP : BOTTOM;
-	head = data->stack_a;
-	previous_a_value = ((t_elem*)data->stack_a_tail->content)->index;
-	index = 0;
-	while (head)
-	{
-		if (((t_elem*)head->content)->index > value && previous_a_value < value)
-			break;
-		previous_a_value = ((t_elem*)head->content)->index;
-		index++;
-		head = head->next;
-	}
-	move_down = ft_lstlen(data->stack_a) - index;
-	moves += (index < move_down) ? index : move_down;
-	dir += (index < move_down) ? TOP : BOTTOM;
-	if (dir == TOP + TOP)
-		moves = ft_abs(moves - (index < (moves - index) ? index : moves - index));
-	else if (dir == BOTTOM + BOTTOM)
-		moves = ft_abs(moves - (move_down < (moves - move_down) ? move_down : moves - move_down));
-	return (moves);
-}
-
-/*
-** ITERATE THROUGH ALL UNITS IN B AND FIND THE "CHEAPEST INDEX"
-*/
-int		ft_find_cheapest_index(t_data *data)
-{
-	t_list *head;
-	int index;
-	int cheapest_index;
-	int least_moves;
-	int temp;
+	t_list	*head;
+	int		index;
+	int		cheapest_index;
+	int		least_moves;
+	int		temp;
 
 	index = 0;
 	least_moves = 999;
 	cheapest_index = 0;
 	head = data->stack_b;
-	while(head)
+	while (head)
 	{
-		temp = ft_count_moves(data, ((t_elem*)head->content)->index, index); 
+		temp = ft_count_moves(data, ((t_elem*)head->content)->index, index);
 		if (temp < least_moves)
 		{
 			cheapest_index = index;
@@ -115,76 +79,11 @@ int		ft_find_cheapest_index(t_data *data)
 	return (cheapest_index);
 }
 
-/*
-** MAKE BLUEPRINT FOR BEST MOVE COMBINATION AND EXECUTE IT
-*/
-void	ft_execute_cheapest_move(t_data *data, int value, int index)
-{
-	int move_down;
-	t_list *head;
-	int previous_value;
-	t_move cheapest;
-
-	head = data->stack_a;
-	move_down = ft_lstlen(data->stack_b) - index;
-	if (index < move_down)
-	{
-		cheapest.b_dir = TOP;
-		cheapest.b_amount = index;
-	}
-	else
-	{
-		cheapest.b_dir = BOTTOM;
-		cheapest.b_amount = move_down;
-	}
-	previous_value = ((t_elem*)data->stack_a_tail->content)->index;
-	index = 0;
-	while (head)
-	{
-		if (((t_elem*)head->content)->index > value && previous_value < value)
-			break;
-		previous_value = ((t_elem*)head->content)->index;
-		index++;
-		head = head->next;
-	}
-	move_down = ft_lstlen(data->stack_a) - index;
-	if (index < move_down)
-	{
-		cheapest.a_dir = TOP;
-		cheapest.a_amount = index;
-	}
-	else
-	{
-		cheapest.a_dir = BOTTOM;
-		cheapest.a_amount = move_down;
-	}
-	while(cheapest.a_dir == cheapest.b_dir && cheapest.a_amount > 0 && cheapest.b_amount > 0)
-	{
-		cheapest.a_dir == TOP ? execute_rr(data) : execute_rrr(data);
-		cheapest.a_amount--;
-		cheapest.b_amount--;
-	}
-	while(cheapest.a_amount > 0)
-	{
-		cheapest.a_dir == TOP ? execute_ra(data) : execute_rra(data);
-		cheapest.a_amount--;
-	}
-	while(cheapest.b_amount > 0)
-	{
-		cheapest.b_dir == TOP ? execute_rb(data) : execute_rrb(data);
-		cheapest.b_amount--;
-	}
-	execute_pa(data);
-}
-
-/*
-** ALL NUMBERS IN STACK A IN ORDER, ROTATE UNTIL 0 ON TOP
-*/
-
 void		ft_sort_stack(t_data *data)
 {
-	int cheapest_index;
-	int i;
+	int		cheapest_index;
+	int		i;
+	t_list	*temp;
 
 	if (ft_lstlen(data->stack_a) == 5)
 		ft_sort_five(data);
@@ -193,7 +92,6 @@ void		ft_sort_stack(t_data *data)
 	else
 	{
 		ft_split_stack(data);
-		t_list *temp;
 		while (1)
 		{
 			i = 0;
@@ -201,10 +99,11 @@ void		ft_sort_stack(t_data *data)
 			temp = data->stack_b;
 			while (i++ < cheapest_index)
 				temp = temp->next;
-			ft_execute_cheapest_move(data, ((t_elem*)temp->content)->index, cheapest_index);
+			ft_execute_cheapest_move(data, ((t_elem*)temp->content)->index,
+			cheapest_index);
 			if (!data->stack_b)
 				break ;
 		}
 		ft_rotate_final_a(data);
-	}	
+	}
 }

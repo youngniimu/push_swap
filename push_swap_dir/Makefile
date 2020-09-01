@@ -15,7 +15,9 @@ FLAGS = -Wall -Wextra -Werror
 SRC_FILES = push_swap.c \
 			sort.c \
 			sort_short.c \
-			add_index.c
+			add_index.c \
+			execute_move.c \
+			sort_helper.c
 			
 SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
