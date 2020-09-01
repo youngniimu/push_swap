@@ -12,27 +12,36 @@
 
 #include "../include/push_swap.h"
 
-int *ft_sort_list(t_data *data)
+static int		*ft_make_int_tab(t_data *data)
 {
-	int *sorted;
-	int i;
-	int j;
-	t_list *head;
+	t_list		*head;
+	int			*sorted;
+	int			i;
 
+	i = 0;
 	head = data->stack_a;
 	sorted = (int*)malloc(sizeof(int) * data->len + 1);
-	i = 0;
-	while(head)
+	while (head)
 	{
 		sorted[i] = ((t_elem*)head->content)->value;
 		head = head->next;
 		i++;
 	}
+	return (sorted);
+}
+
+static int		*ft_sort_list(t_data *data)
+{
+	int			*sorted;
+	int			i;
+	int			j;
+
 	i = 0;
-	while(i < data->len)
+	sorted = ft_make_int_tab(data);
+	while (i < data->len)
 	{
 		j = i + 1;
-		while(j <= data->len)
+		while (j <= data->len)
 		{
 			if (sorted[i] > sorted[j])
 				ft_swap(&sorted[i], &sorted[j]);
@@ -40,21 +49,22 @@ int *ft_sort_list(t_data *data)
 		}
 		i++;
 	}
-	return(sorted);
+	return (sorted);
 }
 
-void ft_indexed_stack(t_data *data)
+void			ft_indexed_stack(t_data *data)
 {
-	int *sorted_list;
-	t_list *head;
-	int i;
+	t_list		*head;
+	int			*sorted_list;
+	int			i;
 
 	sorted_list = ft_sort_list(data);
 	head = data->stack_a;
 	while (head)
 	{
-		i = -1;
-		while (sorted_list[++i] != ((t_elem*)head->content)->value);
+		i = 0;
+		while (sorted_list[i] != ((t_elem*)head->content)->value)
+			i++;
 		((t_elem*)head->content)->index = i;
 		head = head->next;
 	}

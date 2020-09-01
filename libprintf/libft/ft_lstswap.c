@@ -12,13 +12,13 @@
 
 #include "libft.h"
 
-void				ft_lstswap(t_list *alst1, t_list *alst2)
+void		ft_lstswap(t_list *alst1, t_list *alst2)
 {
-	if(!alst1 || !alst2)
-		return;
 	void	*c_content;
 	size_t	c_content_size;
 
+	if (!alst1 || !alst2)
+		return ;
 	c_content = alst1->content;
 	c_content_size = alst1->content_size;
 	alst1->content = alst2->content;

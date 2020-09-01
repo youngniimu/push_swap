@@ -12,12 +12,12 @@
 
 #include "../include/push_swap.h"
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_data	*data;
 
 	if (ac == 1)
-		return(0);
+		return (0);
 	data = ft_init_data(PUSH_SWAP);
 	ft_read_input(ac, av, data);
 	ft_indexed_stack(data);
@@ -26,5 +26,5 @@ int main(int ac, char **av)
 		ft_sort_stack(data);
 	ft_lstdel(&data->stack_a, &del);
 	free(data);
-	return(0);
+	return (0);
 }

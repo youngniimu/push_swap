@@ -14,10 +14,10 @@
 
 long		ft_atolong(const char *str)
 {
-	int count;
-	int neg;
-	int ret;
-	long i;
+	int		count;
+	int		neg;
+	int		ret;
+	long	i;
 
 	i = 0;
 	neg = 1;

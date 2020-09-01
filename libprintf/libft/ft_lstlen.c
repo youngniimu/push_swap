@@ -17,7 +17,7 @@ int		ft_lstlen(t_list *elem)
 	int i;
 
 	i = 0;
-	while(elem)
+	while (elem)
 	{
 		elem = elem->next;
 		i++;

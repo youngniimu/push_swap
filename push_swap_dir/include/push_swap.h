@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PUSH_SWAP_
-# define _PUSH_SWAP_
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include "../../libprintf/include/ft_printf.h"
 # include "../../shared_src/shared_src.h"
 
 void		ft_sort_stack(t_data *data);
-void 		ft_indexed_stack(t_data *data);
-void 		ft_rotate_final_a(t_data *data);
+void		ft_indexed_stack(t_data *data);
+void		ft_rotate_final_a(t_data *data);
 void		ft_sort_five(t_data *data);
 void		ft_sort_short(t_data *data);
 
