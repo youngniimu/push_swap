@@ -24,8 +24,7 @@ int main(int ac, char **av)
 	ft_check_order(data);
 	if (!data->in_order)
 		ft_sort_stack(data);
-	ft_lstdel(&data->stack_a, &del);	//leaks
+	ft_lstdel(&data->stack_a, &del);
 	free(data);
-	while(1);					//leaks
 	return(0);
 }
