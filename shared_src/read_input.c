@@ -42,6 +42,8 @@ static int ft_check_max_int(t_list *elem)
 	{
 		if (((t_elem*)elem->content)->value > MAX_INT)
 			return (INTEGER);
+		if (((t_elem*)elem->content)->value < MIN_INT)
+			return (INTEGER);
 		elem = elem->next;
 	}
 	return(0);
@@ -127,7 +129,7 @@ void				ft_check_flags(char *av, int *i, t_data *data)
 		*i += 1;
 	}
 	if (av[0] == '\0')
-		data->err = NOINPUT;
+		exit(0);
 }
 
 void				ft_read_input(int ac, char **av, t_data *data)
@@ -137,7 +139,7 @@ void				ft_read_input(int ac, char **av, t_data *data)
 
 	i = 1;
 	ft_check_flags(av[i], &i, data);
-	ft_handle_error(data);
+	// ft_handle_error(data);
 	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
 		split = ft_strsplit(av[i], ' ');
 	else
