@@ -31,6 +31,6 @@ int		execute_ra(t_data *data)
 		data->stack_a_tail->next = NULL;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("ra\n");
+		ft_putendl("ra");
 	return (0);
 }

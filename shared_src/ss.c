@@ -18,7 +18,7 @@ int		execute_ss(t_data *data)
 	execute_sa(data);
 	execute_sb(data);
 	if (data->program == PUSH_SWAP)
-		printf("ss\n");
+		ft_putendl("ss\n");
 	data->double_move = 0;
 	return (0);
 }

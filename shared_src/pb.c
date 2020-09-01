@@ -27,6 +27,6 @@ int		execute_pb(t_data *data)
 		data->stack_b_tail = data->stack_b_tail ? data->stack_b_tail : node;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("pb\n");
+		ft_putendl("pb");
 	return (0);
 }

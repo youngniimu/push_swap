@@ -23,8 +23,6 @@ LIB_OBJ = ../libprintf/libftprintf.a
 SHARED_SRC = ../shared_src
 SHARED_SRC_OBJ = ../shared_src/shared_src.a
 
-
-
 all: $(NAME)
 
 $(NAME):

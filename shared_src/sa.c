@@ -17,6 +17,6 @@ int		execute_sa(t_data *data)
 	if (ft_lstlen(data->stack_a) > 1)
 		ft_lstswap(data->stack_a, data->stack_a->next);
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("sa\n");
+		ft_putendl("sa");
 	return (0);
 }

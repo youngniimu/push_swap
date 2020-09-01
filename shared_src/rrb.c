@@ -47,6 +47,6 @@ int				execute_rrb(t_data *data)
 		data->stack_b_tail->next = NULL;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("rrb\n");
+		ft_putendl("rrb");
 	return (0);
 }

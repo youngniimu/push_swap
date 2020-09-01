@@ -42,7 +42,7 @@ void			ft_read_command(t_data *data)
 	else
 	{
 		ft_check_order(data);
-		data->in_order ? printf("OK\n") : printf("KO\n");
+		data->in_order ? ft_putendl("OK") : ft_putendl("KO");
 		exit(0);
 	}
 }

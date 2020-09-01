@@ -47,6 +47,6 @@ int				execute_rra(t_data *data)
 		data->stack_a_tail->next = NULL;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("rra\n");
+		ft_putendl("rra");
 	return (0);
 }

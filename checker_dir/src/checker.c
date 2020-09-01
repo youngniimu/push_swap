@@ -39,7 +39,6 @@ int				main(int ac, char **av)
 			ft_read_command(data);
 	else
 		visualizer(data);
-	ft_lstiter(data->stack_a, &ft_print_data);
 	ft_lstdel(&data->stack_a, &del);
 	free(data);
 	return (0);

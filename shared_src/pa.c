@@ -27,6 +27,6 @@ int		execute_pa(t_data *data)
 		data->stack_a_tail = data->stack_a_tail ? data->stack_a_tail : node;
 	}
 	if (data->program == PUSH_SWAP && !data->double_move)
-		printf("pa\n");
+		ft_putendl("pa");
 	return (0);
 }
