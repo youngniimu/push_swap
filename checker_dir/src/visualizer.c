@@ -78,8 +78,6 @@ int					ft_keyboard_bindings(int button, t_data *data)
 			data->command_index++;
 			nb = ft_itoa(data->command_index);
 			mlx_string_put(MLX, WIN, 10, 10, 0xFFFFFF, nb);
-			
-			
 			free(nb);
 			ft_visualize_stacks(data);
 		}
