@@ -13,7 +13,8 @@
 NAME = push_swap
 FLAGS = -Wall -Wextra -Werror
 SRC_FILES = push_swap.c \
-			solve.c \
+			sort.c \
+			sort_short.c \
 			add_index.c
 			
 SRC_DIR = src/

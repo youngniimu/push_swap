@@ -89,7 +89,7 @@ int			ft_keyboard_bindings(int button, t_data *data)
 		}
 		else
 		{
-			mlx_string_put(MLX, WIN, 10, 130, 0xFFFFFF, "wait, its sorted");
+			mlx_string_put(MLX, WIN, 10, 130, 0xFFFFFF, "OK");
 		}
 		
 	}
@@ -104,7 +104,6 @@ void		ft_start_visualizer(t_data *data)
 	MLX = mlx_init();
     WIN = mlx_new_window(MLX, (data->len * 2) + 22, 360, "pocketSorter");
 	ft_visualize_stacks(data);
-	// mlx_key_hook(WIN, &ft_keyboard_bindings, data);
 	mlx_hook(WIN, 2, 0, &ft_keyboard_bindings, data);
 	mlx_hook(WIN, 3, 0, &ft_keyboard_bindings, data);
 

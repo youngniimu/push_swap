@@ -42,6 +42,5 @@ int		main(int ac, char **av)
 	ft_lstiter(data->stack_a, &ft_print_data);
 	ft_lstdel(&data->stack_a, &del);	//leaks
 	free(data);							//leaks
-	// while(1);
 	return(0);
 }

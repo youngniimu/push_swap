@@ -19,6 +19,8 @@
 
 void		ft_sort_stack(t_data *data);
 void 		ft_indexed_stack(t_data *data);
-// void		del(void *content, size_t content_size);
+void 		ft_rotate_final_a(t_data *data);
+void		ft_sort_five(t_data *data);
+void		ft_sort_short(t_data *data);
 
 #endif

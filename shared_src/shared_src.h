@@ -34,10 +34,13 @@
 # define MLX data->visualizer->mlx
 # define WIN data->visualizer->win
 
-# define ST ((t_elem*)data->stack_a->content)->index
-# define ND ((t_elem*)data->stack_a->next->content)->index
-# define RD ((t_elem*)data->stack_a->next->next->content)->index
+# define A_ST ((t_elem*)data->stack_a->content)->index
+# define A_ND ((t_elem*)data->stack_a->next->content)->index
+# define A_RD ((t_elem*)data->stack_a->next->next->content)->index
 
+# define B_ST ((t_elem*)data->stack_b->content)->index
+# define B_ND ((t_elem*)data->stack_b->next->content)->index
+# define B_RD ((t_elem*)data->stack_b->next->next->content)->index
 
 
 typedef struct		s_mlx

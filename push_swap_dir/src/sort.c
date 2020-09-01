@@ -12,43 +12,41 @@
 
 #include "../include/push_swap.h"
 
-static void		ft_sort_three(t_data *data)
+void ft_rotate_final_a(t_data *data)
 {
-		ST > ND && ND < RD && ST < RD ? execute_sa(data) : 0;
-		ST > ND && ND < RD && ST > RD ? execute_ra(data) : 0;
-		ST < ND && ND > RD && ST > RD ? execute_rra(data) : 0;
-		ST < ND && ND > RD && ST < RD ? execute_sa(data) & execute_ra(data) : 0;
-		ST > ND && ND > RD ? execute_sa(data) & execute_rra(data) : 0;
+	t_list *head;
+	int index;
+
+	head = data->stack_a;
+	index = 0;
+	while (head)
+	{
+		if ((((t_elem*)head->content)->index) == 0)
+			break;
+		head = head->next;
+		index++;
+	}
+	if (index < (data->len - index))
+		while (index--)
+			execute_ra(data);
+	else
+	{
+		index = ft_lstlen(data->stack_a) - index;
+		while (index--)
+			execute_rra(data);
+	}
 }
 
-static void		ft_sort_short(t_data *data)
-{
-	if (ft_lstlen(data->stack_a) == 2)
-		CURRENT_A_INDEX == 1 && NEXT_A_INDEX == 0 ? execute_sa(data) : 0;
-	else if (ft_lstlen(data->stack_a) == 3)
-		ft_sort_three(data);
-}
-/*
-** PUSH STACK A TO STACK B, FIRST NUMBER BELOW MEDIAN, THEN OVER MEDIAN, (NO MAX NO MIN)
-*/
 void		ft_split_stack(t_data *data)
 {
 	int i;
 
 	i = -1;
-	if (ft_lstlen(data->stack_a) == 5)
-	{
-		while (ft_lstlen(data->stack_a) != 2)
-			(CURRENT_A_INDEX != data->len && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
-	}
-	else
-	{
-		while (++i <= data->len)
-			(CURRENT_A_INDEX <= data->median && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
-		i = -1;
-		while (ft_lstlen(data->stack_a) != 2)
-			(CURRENT_A_INDEX > data->median && CURRENT_A_INDEX != data->len && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
-	}	
+	while (++i <= data->len)
+		(CURRENT_A_INDEX <= data->median && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
+	i = -1;
+	while (ft_lstlen(data->stack_a) != 2)
+		(CURRENT_A_INDEX > data->median && CURRENT_A_INDEX != data->len && CURRENT_A_INDEX != 0) ? execute_pb(data) : execute_ra(data);
 	if (CURRENT_A_INDEX < NEXT_A_INDEX)
 		execute_sa(data);
 }
@@ -85,14 +83,12 @@ int			ft_count_moves(t_data *data, int value, int index)
 		moves = ft_abs(moves - (index < (moves - index) ? index : moves - index));
 	else if (dir == BOTTOM + BOTTOM)
 		moves = ft_abs(moves - (move_down < (moves - move_down) ? move_down : moves - move_down));
-	// printf("total moves:\t%d\n\n", moves);
 	return (moves);
 }
 
 /*
 ** ITERATE THROUGH ALL UNITS IN B AND FIND THE "CHEAPEST INDEX"
 */
-
 int		ft_find_cheapest_index(t_data *data)
 {
 	t_list *head;
@@ -108,25 +104,20 @@ int		ft_find_cheapest_index(t_data *data)
 	while(head)
 	{
 		temp = ft_count_moves(data, ((t_elem*)head->content)->index, index); 
-//		// printf("moves:%d\n", temp);
-		//printf("current leastmoves:%d\n", least_moves);
 		if (temp < least_moves)
 		{
 			cheapest_index = index;
 			least_moves = temp;
 		}
-		//printf("index:%d\n\n", index);
 		index++;
 		head = head->next;
 	}
-	// printf("cheapest:%d\n\n", cheapest_index);
 	return (cheapest_index);
 }
 
 /*
 ** MAKE BLUEPRINT FOR BEST MOVE COMBINATION AND EXECUTE IT
 */
-
 void	ft_execute_cheapest_move(t_data *data, int value, int index)
 {
 	int move_down;
@@ -146,7 +137,6 @@ void	ft_execute_cheapest_move(t_data *data, int value, int index)
 		cheapest.b_dir = BOTTOM;
 		cheapest.b_amount = move_down;
 	}
-	// FIND RIGHT A_STACK INDEX, INITIALIZE PREVIOUS_VALUE AS A_STACK_TAIL->INDEX
 	previous_value = ((t_elem*)data->stack_a_tail->content)->index;
 	index = 0;
 	while (head)
@@ -191,39 +181,14 @@ void	ft_execute_cheapest_move(t_data *data, int value, int index)
 ** ALL NUMBERS IN STACK A IN ORDER, ROTATE UNTIL 0 ON TOP
 */
 
-void ft_rotate_final_a(t_data *data)
-{
-	t_list *head;
-	int index;
-
-	head = data->stack_a;
-	index = 0;
-	while (head)
-	{
-		if ((((t_elem*)head->content)->index) == 0)
-			break;
-		head = head->next;
-		index++;
-	}
-	// printf("lstlen%d\n", ft_lstlen(data->stack_a));
-	// printf("index is %d\n", index);
-	if (index < (data->len - index))
-		while (index--)
-			execute_ra(data);
-	else
-	{
-		index = ft_lstlen(data->stack_a) - index;
-		while (index--)
-			execute_rra(data);
-	}
-}
-
 void		ft_sort_stack(t_data *data)
 {
 	int cheapest_index;
 	int i;
 
-	if (ft_lstlen(data->stack_a) <= 3)
+	if (ft_lstlen(data->stack_a) == 5)
+		ft_sort_five(data);
+	else if (ft_lstlen(data->stack_a) <= 3)
 		ft_sort_short(data);
 	else
 	{
@@ -242,8 +207,4 @@ void		ft_sort_stack(t_data *data)
 		}
 		ft_rotate_final_a(data);
 	}	
-		// printf("STACK A\n");
-		// ft_lstiter(data->stack_a, &ft_print_data);
-		// printf("STACK B\n");
-		// ft_lstiter(data->stack_b, &ft_print_data);
 }

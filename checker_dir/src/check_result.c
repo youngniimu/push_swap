@@ -15,10 +15,6 @@
 void		ft_check_result(t_data *data)
 {
 	ft_check_order(data);
-	// printf("STACK A\n");
-	// ft_lstiter(data->stack_a, &ft_print_data);
-	// printf("STACK B\n");
-	// ft_lstiter(data->stack_b, &ft_print_data);
 	data->in_order ? printf("OK\n") : printf("KO\n");
 	exit(0);
 }
