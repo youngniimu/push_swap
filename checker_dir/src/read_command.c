@@ -16,7 +16,7 @@ static void		handle_command(t_data *data)
 {
 	int			err;
 
-	err = 2;
+	err = 5;
 	err *= !ft_strequ("sa", data->command) ? 1 : execute_sa(data);
 	err *= !ft_strequ("sb", data->command) ? 1 : execute_sb(data);
 	err *= !ft_strequ("ss", data->command) ? 1 : execute_ss(data);

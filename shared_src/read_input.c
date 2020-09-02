@@ -53,17 +53,21 @@ void				create_list(char **split, t_data *data)
 	}
 }
 
-void				ft_check_flags(char *av, int *i, t_data *data)
+void				ft_check_flags(char *av, int *i, t_data *data, int ac)
 {
 	if (ft_strequ(av, "-v"))
 	{
 		data->flag = VISUALIZER;
 		*i += 1;
+		if (ac == 2)
+			exit(0);
 	}
 	else if (ft_strequ(av, "-e"))
 	{
 		data->flag = ERROR;
 		*i += 1;
+		if (ac == 2)
+			exit(0);
 	}
 	if (av[0] == '\0')
 		exit(0);
@@ -87,8 +91,8 @@ void				ft_read_input(int ac, char **av, t_data *data)
 	int			i;
 
 	i = 1;
-	ft_check_flags(av[i], &i, data);
-	if (ac == 2 || (ac == 3 && data->flag == VISUALIZER))
+	ft_check_flags(av[i], &i, data, ac);
+	if (ac == 2 || (ac == 3 && data->flag))
 		split = ft_strsplit(av[i], ' ');
 	else
 		split = &av[i];

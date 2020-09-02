@@ -28,6 +28,7 @@
 # define ONLY_NUMBERS 2
 # define INTEGER 3
 # define NOINPUT 4
+# define INV_COMMAND 5
 
 # define CURRENT_A_INDEX ((t_elem*)data->stack_a->content)->index
 # define NEXT_A_INDEX ((t_elem*)data->stack_a->next->content)->index

@@ -62,11 +62,12 @@ int			ft_validate_input(char **tab)
 		sign = 0;
 		while (tab[i][j])
 		{
+			if (tab[i][0] == '\0' || ft_strequ(tab[i], "-"))
+				return (2);
 			if (tab[i][j] == '-')
 				sign++;
-			if ((!(ft_isdigit(tab[i][j]))
-				&& tab[i][j] != ' ' && tab[i][j] != '-')
-				|| sign == 2)
+			if ((!(ft_isdigit(tab[i][j])) &&
+				tab[i][j] != ' ' && tab[i][j] != '-') || sign == 2)
 				return (2);
 			j++;
 		}

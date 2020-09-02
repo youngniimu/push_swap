@@ -19,16 +19,18 @@ void	ft_handle_error(t_data *data)
 		if (data->flag == ERROR)
 		{
 			if (data->err == DUPLICATE)
-				ft_printf("Error: duplicate found.\n");
+				ft_putendl("Error: duplicate found.");
 			if (data->err == ONLY_NUMBERS)
-				ft_printf("Error: input must contain only numbers.\n");
+				ft_putendl("Error: input must contain only numbers.");
 			if (data->err == INTEGER)
-				ft_printf("Error: input must contain only integer values.\n");
+				ft_putendl("Error: input must contain only integer values.");
 			if (data->err == NOINPUT)
-				ft_printf("Error: no input\n");
+				ft_putendl("Error: no input");
+			if (data->err == INV_COMMAND)
+				ft_putendl("Error: invalid command");
 			exit(1);
 		}
-		ft_printf("Error\n");
+		ft_putendl("Error");
 		exit(1);
 	}
 }
